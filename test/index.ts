@@ -1,34 +1,23 @@
-import * as express from 'express';
-import axios from 'axios';
-import {middleware} from '../src';
-import Request from './Request';
-import { Exception } from '../src/lib/Exception';
+import chai from 'chai'
+import chaiHttp from 'chai-http';
+import app from './server';
 
-const app = express();
+chai.use(chaiHttp);
+chai.should();
 
-app.post('/', middleware(Request), (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    try {
-        res.json(req);
-    } catch (e) {
-        next(e);
-    }
-});
+describe('Requests', () => {
 
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (err instanceof Exception) {
-        res.status(err.code).json(err.body);
-    } else {
-        console.log(err.constructor.name);
-        res.status(500).json({message: "Something went wrong"});
-    }
-});
+    it('Should send the request without errors', (done) => {
+        chai.request(app).post('/').send({password: 'Password1%#', password_confirmation: 'Password1%#'}).end((err, res) => {
+            res.should.have.status(200);
+            done();
+        })
+    });
 
-app.listen(3000, () => {
-    console.log('Test server started');
-    axios.post('http://127.0.0.1:3000', {password: 'ok'}).then((res) => {
-        console.log('Test successed!')
-    }).catch(e => {
-    }).finally(() => {
-        //process.exit();
-    })
+    it('Should recieve a 422 error', (done) => {
+        chai.request(app).post('/').send({password: 'Password1%#', password_confirmation: 'Password1a%#'}).end((err, res) => {
+            res.should.have.status(422);
+            done();
+        })
+    });
 });

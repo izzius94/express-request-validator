@@ -1,3 +1,6 @@
+/**
+ * The exception rised
+ */
 export class Exception extends Error {
     protected _code: number;
     protected _body: {[key: string]: any}

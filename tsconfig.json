@@ -2,17 +2,22 @@
     "compilerOptions": {
       "module": "commonJs",
       "moduleResolution": "node",
-      "pretty": true,
-      "sourceMap": false,
       "outDir": "./dist",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
       "lib": ["es2015", "DOM"],
       "target": "ES2015",
-      "declaration": true
+      "declaration": true,
+      "esModuleInterop": true
     },
     "include": [
       "src/**/*.ts",
     ],
-    "exclude": []
+    "exclude": [
+      "./node_modules/",
+      "./test/",
+      "./dist/"
+    ],
+    "typedocOptions": {
+      "entryPoints": ["src"],
+      "out": "docs"
+    }
   }
