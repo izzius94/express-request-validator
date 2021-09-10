@@ -1,6 +1,6 @@
 import * as Validator from 'validatorjs';
 import {Rules, RegisterAsyncCallback} from 'validatorjs';
-import {Request, Response} from 'express';
+import {NextFunction, Request, Response} from 'express';
 import { Exception } from './Exception';
 
 export default abstract class {
@@ -36,8 +36,8 @@ export default abstract class {
         validator.checkAsync(this.after.bind(this, passes), fails.bind(this));
     }
 
-    public fail(): void {
-        throw new Exception(this._code, this._body);
+    public fail(next: NextFunction): void {
+        next(new Exception(this._code, this._body));
     }
 
     protected attach() {

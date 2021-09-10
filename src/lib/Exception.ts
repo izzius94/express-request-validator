@@ -3,9 +3,11 @@ export class Exception extends Error {
     protected _body: {[key: string]: any}
 
     constructor(code: number, body: {[key: string]: any}) {
-        super('bfhbfg');
+        super();
         this._code = code;
         this._body = body;
+
+        Object.setPrototypeOf(this, Exception.prototype);
     }
 
     public get code() {
