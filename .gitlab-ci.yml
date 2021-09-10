@@ -22,3 +22,4 @@ build-job:
     - echo "Compiling the code..."
     - npm run build
     - echo "Compile complete."
+    - zip -r build.zip dist/ package.json
