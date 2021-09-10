@@ -22,6 +22,6 @@
   },
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --exit -r ts-node/register 'test/**/*.ts'",
-    "build": "yarn test && tsc"
+    "build": "tsc"
   }
 }
