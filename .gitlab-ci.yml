@@ -23,3 +23,7 @@ build-job:
     - npm run build
     - echo "Compile complete."
     - zip -r build.zip dist/ package.json
+  artifacts:
+    paths:
+      - build.zip
+    expire_in: 1 week
