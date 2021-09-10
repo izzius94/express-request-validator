@@ -20,5 +20,5 @@ build-job:
   stage: build
   script:
     - echo "Compiling the code..."
-    - npm build
+    - npm run build
     - echo "Compile complete."
