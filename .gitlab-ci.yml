@@ -1,0 +1,24 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - build
+
+unit-test-job:
+  stage: test
+  script:
+    - echo "Installing dependencies"  
+    - npm install  
+    - echo "Running unit tests"
+    - npm test
+
+build-job:
+  stage: build
+  script:
+    - echo "Compiling the code..."
+    - npm build
+    - echo "Compile complete."
