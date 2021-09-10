@@ -3,7 +3,7 @@ import Req                               from './HttpRequest';
 
 export default (Validation: IRequest) => {
     return function(req: Request, res: Response, next: NextFunction) {
-        const v = new Validation(req, res.locals.auth, res);
+        const v = new Validation(req, res, res.locals.auth);
 
         v.validate(next, v.fail.bind(v, next));
     }
