@@ -7,7 +7,7 @@ cache:
 stages:
   - test
   - build
-  - deplay
+  - deploy
 
 unit-test-job:
   stage: test
