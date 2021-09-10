@@ -26,4 +26,5 @@ build-job:
     paths:
       - dist
       - package.json
+      - readme.md
     expire_in: 1 week

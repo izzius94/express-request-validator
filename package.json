@@ -1,8 +1,12 @@
 {
-  "name": "express-request-validator",
-  "version": "1.0.0",
+  "name": "@izzius94/express-request-validator",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/izzius94/express-request-validator.git"
+  },
   "dependencies": {
     "validatorjs": "^3.22.1"
   },
@@ -23,5 +27,14 @@
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --exit -r ts-node/register 'test/**/*.ts'",
     "build": "tsc"
+  },
+  "author": "Maurizio Urso <developer.urso@gmail.com>",
+  "description": "",
+  "bugs": {
+    "url": "https://gitlab.com/izzius94/express-request-validator/issues"
+  },
+  "homepage": "https://gitlab.com/izzius94/express-request-validator#readme",
+  "directories": {
+    "test": "test"
   }
 }
