@@ -6,7 +6,6 @@ chai.use(chaiHttp);
 chai.should();
 
 describe('Requests', () => {
-
     it('Should send the request without errors', (done) => {
         chai.request(app).post('/').send({password: 'Password1%#', password_confirmation: 'Password1%#'}).end((err, res) => {
             res.should.have.status(200);
