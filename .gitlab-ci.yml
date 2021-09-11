@@ -19,6 +19,9 @@ unit-test-job:
 
 build-job:
   stage: build
+  only:
+    - main
+    - tags
   script:
     - echo "Compiling the code..."
     - npm run build
@@ -32,6 +35,8 @@ build-job:
 
 deploy-job:
   stage: deploy
+  only:
+    - tags
   script:
     - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
     - npm config set @izzius94:registry https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/packages/npm/
@@ -43,6 +48,10 @@ deploy-job:
     
 deploy-npm-job:
   stage: deploy
+  only:
+    - main
+    - tags
+
   script:
     - echo "$NPM_SCOPE:registry=https://registry.npmjs.org" > .npmrc
     - echo "//https://registry.npmjs.org:_authToken=$NPM_TOKEN" >> .npmrc
