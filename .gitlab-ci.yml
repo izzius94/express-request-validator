@@ -40,4 +40,5 @@ deploy-job:
     - echo $NPM_TOKEN
     - cat .npmrc
     - npm publish
+    - npm set registry https://registry.npmjs.org
     - npm publish --registry https://registry.npmjs.org
