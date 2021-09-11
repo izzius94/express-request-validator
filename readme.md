@@ -20,6 +20,7 @@ import MyValidation from './validations/MyValidation';
 
 const app = express();
 
+// Registering the middleware
 app.post('/', validate(MyValidation), (req, res) => {
     res.json(req.body);
 });
