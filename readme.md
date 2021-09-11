@@ -44,13 +44,16 @@ export default class Password extends HttpRequest {
 ```
 
 ### Register your custom rules
-```
+```javascript
 ```
 
 ### Change date used by the validation
-```
+```javascript
 ```
 
-## Attach data to the response
+### Attach data to the response
+```javascript
 ```
+### The exception riser
+```javascript
 ```
