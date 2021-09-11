@@ -1,6 +1,6 @@
 {
   "name": "@izzius94/express-request-validator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
@@ -34,7 +34,7 @@
     "url": "https://gitlab.com/izzius94/express-request-validator/issues"
   },
   "publishConfig": {
-    "@foo:registry":" https://gitlab.com/api/v4/packages/npm/"
+    "@foo:registry": "https://gitlab.com/api/v4/packages/npm/"
   },
   "homepage": "https://gitlab.com/izzius94/express-request-validator#readme",
   "directories": {
