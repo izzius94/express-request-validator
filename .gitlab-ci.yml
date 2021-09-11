@@ -40,6 +40,10 @@ deploy-job:
     - echo $NPM_TOKEN
     - cat .npmrc
     - npm publish
+    
+deploy-npm-job:
+  stage: deploy
+  script:
     - echo "$NPM_SCOPE:registry=https://registry.npmjs.org" > .npmrc
     - echo "//https://registry.npmjs.org:_authToken=$NPM_TOKEN" >> .npmrc
     - cat .npmrc
