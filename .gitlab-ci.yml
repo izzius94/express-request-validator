@@ -20,8 +20,8 @@ unit-test-job:
 build-job:
   stage: build
   only:
-    - refs:
-      - main
+    - main
+    - tags
   script:
     - echo "Compiling the code..."
     - npm run build
