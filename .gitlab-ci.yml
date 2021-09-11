@@ -40,8 +40,8 @@ deploy-job:
     - echo $NPM_TOKEN
     - cat .npmrc
     - npm publish
-    - echo "$NPM_SCOPE:registry=https://registry.npmjs.org" > ~/.npmrc
-    - echo "//https://registry.npmjs.org:_authToken=$NPM_TOKEN" >> ~/.npmrc
+    - echo "$NPM_SCOPE:registry=https://registry.npmjs.org" > .npmrc
+    - echo "//https://registry.npmjs.org:_authToken=$NPM_TOKEN" >> .npmrc
     - cat .npmrc
     - npm set registry https://registry.npmjs.org
     - npm publish --registry https://registry.npmjs.org
