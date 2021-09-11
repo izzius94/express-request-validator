@@ -35,8 +35,7 @@ build-job:
 
 deploy-job:
   stage: deploy
-  only:
-    - tags
   script:
     - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${NPM_TOKEN}">.npmrc
+    - cat .npmrc
     - npm publish
