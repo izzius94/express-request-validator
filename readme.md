@@ -2,24 +2,25 @@
 This library was inspired by Laravel Request validation and validatorjs
 ## Installation
 ### Using npm
-```
+```javascript
 npm install @izzius94/express-request-validator
 ```
 ### Using yarn
-```
+```javascript
 yarn add @izzius94/express-request-validator
 ```
 
 ## Usage
 
 ### Register the validation middleware
-```
+```javascript
 import express from 'express';
 import validate from 'express-request-validator';
 import MyValidation from './validations/MyValidation';
 
 const app = express();
 
+// Registering the middleware
 app.post('/', validate(MyValidation), (req, res) => {
     res.json(req.body);
 });
@@ -30,7 +31,7 @@ app.listen(process.env.APP_PORT, () => {
 
 ```
 
-```
+```javascript
 import {HttpRequest} from '../src';
 
 export default class Password extends HttpRequest {
@@ -43,13 +44,16 @@ export default class Password extends HttpRequest {
 ```
 
 ### Register your custom rules
-```
+```javascript
 ```
 
 ### Change date used by the validation
-```
+```javascript
 ```
 
-## Attach data to the response
+### Attach data to the response
+```javascript
 ```
+### The exception riser
+```javascript
 ```
