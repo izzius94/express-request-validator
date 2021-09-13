@@ -35,6 +35,7 @@ build-job:
 
 deploy-job:
   stage: deploy
+  when: manual
   only:
     - tags
   script:
