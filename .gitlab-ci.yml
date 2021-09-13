@@ -22,7 +22,7 @@ unit-test-job:
     - echo "Running unit tests"
     - npm test
 
-unit-test-job:
+standard-test-job:
   stage: test
   script:
     - echo "Checking standard"
