@@ -1,5 +1,5 @@
 /**
- * The exception rised
+ * Exception rised when a request validation fails
  */
 export class Exception extends Error {
     protected _code: number;

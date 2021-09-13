@@ -1,7 +1,6 @@
 import express from 'express';
-import {middleware} from '../src';
-import Request from './Request';
-import { Exception } from '../src/lib/Exception';
+import {middleware, ValidationException} from '../src';
+import Request from './request';
 import {json} from 'body-parser';
 
 const app = express();
@@ -16,7 +15,7 @@ app.post('/', middleware(Request), (req: express.Request, res: express.Response,
 });
 
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (err instanceof Exception) {
+    if (err instanceof ValidationException) {
         res.status(err.code).json(err.body);
     } else {
         console.log(err);

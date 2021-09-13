@@ -41,10 +41,12 @@ yargs.command(['create <class>'], 'Create a new request', (yargs) => {
         mkdirSync(path, {recursive: true});
     }
 
+    let classFile = camelToSnakeCase(argv.class);
+
     /**
      * Generating the new file appending the '.ts' extension if not present
      */
-    path = `${path}/${argv.class.substring(argv.class.length -3) === '.ts' ? argv.class : `${argv.class}.ts`}`;
+    path = `${path}/${classFile.substring(classFile.length -3) === '.ts' ? classFile : `${classFile}.ts`}`;
 
     /**
      * If the file exists and the flag --force is not set exit the program to not wrongly overwrite
@@ -60,3 +62,5 @@ yargs.command(['create <class>'], 'Create a new request', (yargs) => {
      */
     writeFileSync(path, template.replace(':className', argv.class));
 }).argv;
+
+const camelToSnakeCase = (str: string) => str.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`).substring(1)
