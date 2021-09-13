@@ -5,12 +5,13 @@ cache:
     - node_modules/
 
 stages:
+  - dependencies
   - test
   - build
   - deploy
 
 install:
-  stage: test
+  stage: dependencies
   script:
     - echo "Installing dependencies"
     - npm install
