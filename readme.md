@@ -43,17 +43,4 @@ export default class Password extends HttpRequest {
 }
 ```
 
-### Register your custom rules
-```javascript
-```
-
-### Change date used by the validation
-```javascript
-```
-
-### Attach data to the response
-```javascript
-```
-### The exception riser
-```javascript
-```
+See the full documentation [here](https://gitlab.com/izzius94/express-request-validator/-/wikis/Home).
