@@ -9,11 +9,15 @@ stages:
   - build
   - deploy
 
-unit-test-job:
+install:
   stage: test
   script:
     - echo "Installing dependencies"
     - npm install
+
+unit-test-job:
+  stage: test
+  script:
     - echo "Running unit tests"
     - npm test
 
@@ -57,7 +61,6 @@ deploy-npm-job:
   when: manual
   only:
     - tags
-
   script:
     - echo "$NPM_SCOPE:registry=https://registry.npmjs.org" > .npmrc
     - echo "//https://registry.npmjs.org:_authToken=$NPM_TOKEN" >> .npmrc
