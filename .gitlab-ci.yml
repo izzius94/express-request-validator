@@ -58,3 +58,17 @@ deploy-npm-job:
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm set registry https://registry.npmjs.org
     - npm publish --registry https://registry.npmjs.org
+
+release:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs:
+    - job: build-job
+      artifacts: true
+  script:
+    - echo 'release job'
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: './CHANGELOG.md'
