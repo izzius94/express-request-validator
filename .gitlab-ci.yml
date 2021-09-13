@@ -12,10 +12,16 @@ stages:
 unit-test-job:
   stage: test
   script:
-    - echo "Installing dependencies"  
-    - npm install  
+    - echo "Installing dependencies"
+    - npm install
     - echo "Running unit tests"
     - npm test
+
+unit-test-job:
+  stage: test
+  script:
+    - echo "Checking standard"
+    - npm run check-standard
 
 build-job:
   stage: build
