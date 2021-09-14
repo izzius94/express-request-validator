@@ -10,6 +10,9 @@ stages:
   - build
   - deploy
 
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+
 install:
   stage: dependencies
   script:
@@ -35,6 +38,11 @@ test-coverage:
   artifacts:
     reports:
       cobertura: coverage/cobertura-coverage.xml
+
+dependency-scanning:
+  stage: test
+  variables:
+    CI_DEBUG_TRACE: "true"
 
 build-job:
   stage: build

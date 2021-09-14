@@ -40,6 +40,7 @@
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --exit -r ts-node/register 'test/**/*.ts'",
     "coverage": "nyc --reporter=cobertura --reporter=text-summary npm run test",
+    "coverage-html": "nyc --reporter=html --reporter=text-summary npm run test",
     "check-standard": "ts-standard",
     "docs": "typedoc --plugin none --out docs/html",
     "docs-gitlab": "typedoc --theme ./node_modules/typedoc-gitlab-wiki-theme/dist --out docs/giltab",
