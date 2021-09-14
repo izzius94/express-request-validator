@@ -38,6 +38,9 @@ test-coverage:
 
 build-job:
   stage: build
+  only:
+    - main
+    - tags
   script:
     - echo "Compiling the code..."
     - npm run build
