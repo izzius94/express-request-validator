@@ -3,6 +3,7 @@ image: node:14-buster
 cache:
   paths:
     - node_modules/
+    - cobertura/
 
 stages:
   - dependencies
@@ -43,6 +44,7 @@ build-job:
     reports:
       cobertura: coverage/cobertura-coverage.xml
     paths:
+      - coverage
       - dist
       - package.json
       - readme.md
