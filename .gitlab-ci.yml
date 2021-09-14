@@ -3,7 +3,6 @@ image: node:14-buster
 cache:
   paths:
     - node_modules/
-    - cobertura/
 
 stages:
   - dependencies
@@ -33,6 +32,9 @@ test-coverage:
   stage: test
   script:
     - npm run coverage
+  artifacts:
+    reports:
+      cobertura: coverage/cobertura-coverage.xml
 
 build-job:
   stage: build
@@ -41,8 +43,6 @@ build-job:
     - npm run build
     - echo "Compile complete."
   artifacts:
-    reports:
-      cobertura: coverage/cobertura-coverage.xml
     paths:
       - coverage
       - dist
