@@ -38,6 +38,7 @@ test-coverage:
   artifacts:
     reports:
       cobertura: coverage/cobertura-coverage.xml
+  coverage: /Branches\s+:\s(\d+.?\d+)%/
 
 gemnasium-dependency_scanning:
   variables:
