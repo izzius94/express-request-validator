@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import HttpRequest from './http-request'
 
+export type IRequest = new (req: Request, res: Response) => HttpRequest
+
 /**
  * Middleware used to validate a request using an instance
  * of HttpRequest Class
@@ -15,5 +17,3 @@ export default function (Validation: IRequest) {
     v.validate(next, v.fail.bind(v, next))
   }
 }
-
-export type IRequest = new (req: Request, res: Response) => HttpRequest

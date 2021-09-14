@@ -28,16 +28,20 @@ standard-test-job:
     - echo "Checking standard"
     - npm run check-standard
 
+test-coverage:
+  stage: test
+  script:
+    - npm run coverage
+
 build-job:
   stage: build
-  only:
-    - main
-    - tags
   script:
     - echo "Compiling the code..."
     - npm run build
     - echo "Compile complete."
   artifacts:
+    reports:
+      cobertura: coverage/cobertura-coverage.xml
     paths:
       - dist
       - package.json

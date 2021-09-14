@@ -1,9 +1,9 @@
 import chai from 'chai'
-import chaiHttp from 'chai-http';
-import app from './server';
+import chaiHttp from 'chai-http'
+import app from './server'
 
-chai.use(chaiHttp);
-chai.should();
+chai.use(chaiHttp)
+chai.should()
 
 describe('Requests', () => {
     it('Should send the request without errors', (done) => {

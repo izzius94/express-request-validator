@@ -1,19 +1,40 @@
+[![npm version](https://badge.fury.io/js/@izzius94%2Fexpress-request-validator.svg)](https://badge.fury.io/js/@izzius94%2Fexpress-request-validator)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 # Express request validator
 This library was inspired by Laravel Request validation and validatorjs
+
 ## Installation
-### Using npm
-```javascript
+
+**Using npm**
+```
 npm install @izzius94/express-request-validator
 ```
-### Using yarn
-```javascript
+
+**Using yarn**
+```
 yarn add @izzius94/express-request-validator
 ```
 
-## Usage
+## Basic Usage
+
+### Create your validation class
+```typescript
+import {HttpRequest} from '../src';
+
+export default class Password extends HttpRequest {
+    protected rules() {
+        return {
+            password: 'required|string|confirmed'
+        }
+    }
+}
+```
+
+Define your rules in the returned object.
 
 ### Register the validation middleware
-```javascript
+```typescript
 import express from 'express';
 import validate from 'express-request-validator';
 import MyValidation from './validations/MyValidation';
@@ -31,16 +52,7 @@ app.listen(process.env.APP_PORT, () => {
 
 ```
 
-```javascript
-import {HttpRequest} from '../src';
+You are ready to go!
 
-export default class Password extends HttpRequest {
-    protected rules() {
-        return {
-            password: ['required', 'string', 'confirmed']
-        }
-    }
-}
-```
 
 See the full documentation [here](https://gitlab.com/izzius94/express-request-validator/-/wikis/Home).

@@ -5,7 +5,7 @@ import { Exception } from './exception'
 /**
  * Class to handle express requests validating data and formatting the response
  */
-export default abstract class {
+export default abstract class HttpRequest {
   /** The response status code to send to the client */
   protected _code: number = 422
   /** The response body to send to the client */
@@ -22,10 +22,10 @@ export default abstract class {
   protected readonly _asyncs: Array<{name: string, fn: RegisterAsyncCallback, message: string}> = []
 
   /**
-     * Init the class
-     * @param req The request sent by the client
-     * @param res The response to send to the client
-     */
+   * Init the class
+   * @param req The request sent by the client
+   * @param res The response to send to the client
+   */
   constructor (req: Request, res: Response) {
     this._res = res
     this._req = req
@@ -34,24 +34,22 @@ export default abstract class {
   }
 
   /**
-     * Method to set the data used by the validation, by default it uses _req.body
-     * @returns The data used by the validation
-     */
+   * Method to set the data used by the validation, by default it uses _req.body
+   * @returns The data used by the validation
+   */
   protected data (): any {
     return this._req.body
   }
 
   /**
-     * Method to validate data.
-     * It first register user defined rules, then validate the data
-     *
-     * @param passes The callback used if validation passes
-     * @param fails The callback used if validation fails
-     */
+   * Method to validate data.
+   * It first register user defined rules, then validate the data
+   *
+   * @param passes The callback used if validation passes
+   * @param fails The callback used if validation fails
+   */
   public validate (passes: Function, fails: Function): void {
-    this._asyncs.forEach(rule => {
-      Validator.registerAsync(rule.name, rule.fn, rule.message)
-    })
+    this._asyncs.forEach(this.registerRule)
 
     const validator = new Validator(this._data, this.rules())
     this._body.errors = validator.errors.errors
@@ -60,34 +58,45 @@ export default abstract class {
   }
 
   /**
-     * Method used when a validation fails, it pass a new ValidationException
-     * to the next method of express
-     *
-     * @param next The next callable function of express
-     */
+   * Method used when a validation fails, it pass a new ValidationException
+   * to the next method of express
+   *
+   * @param next The next callable function of express
+   */
   public fail (next: NextFunction): void {
     next(new Exception(this._code, this._body))
   }
 
   /**
-     * Set data attached to the response
-     *
-     * @returns The user defined
-     */
+   * Add a user defined rule to the validation
+   *
+   * @param rule The rule to apply in the validation
+   */
+  protected registerRule (rule: {name: string, fn: RegisterAsyncCallback, message: string}): void {
+    Validator.registerAsync(rule.name, rule.fn, rule.message)
+  }
+
+  /**
+   * Set data attached to the response
+   *
+   * @returns The user defined
+   */
   protected attach (): {[key: string]: any} {
     return {}
   }
 
   /**
-     * Method to add user defined actions after the validation succed
-     */
-  protected after (passes): void {
+   * Method to add user defined actions after the validation succed
+   *
+   * @param passes The function to call when validation passes
+   */
+  protected after (passes: Function): void {
     this._res.locals[this.constructor.name] = this.attach()
     passes()
   }
 
   /**
-     * Method to set the validation rules
-     */
+   * Method to set the validation rules
+   */
   protected abstract rules (): Rules
 }
