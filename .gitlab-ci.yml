@@ -32,8 +32,8 @@ standard-test-job:
     - npm run check-standard
 
 test-coverage:
-  stage: test
   script:
+    - npm install
     - npm run coverage
   artifacts:
     reports:
