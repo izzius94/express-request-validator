@@ -39,10 +39,9 @@ test-coverage:
     reports:
       cobertura: coverage/cobertura-coverage.xml
 
-dependency-scanning:
-  stage: test
+gemnasium-dependency_scanning:
   variables:
-    CI_DEBUG_TRACE: "true"
+    DS_REMEDIATE: "false"
 
 build-job:
   stage: build
