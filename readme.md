@@ -20,7 +20,7 @@ yarn add @izzius94/express-request-validator
 
 ### Create your validation class
 ```typescript
-import {HttpRequest} from '../src';
+import {HttpRequest} from '@izzius94/express-request-validator';
 
 export default class Password extends HttpRequest {
     protected rules() {

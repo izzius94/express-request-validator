@@ -1,30 +1,29 @@
 import express from 'express';
-import {middleware, ValidationException} from '../src';
-import Request from './request';
+import { middleware, ValidationException } from '../src';
+import * as requests from './request';
 import {json} from 'body-parser';
 
 const app = express();
 app.use(json());
 
-app.post('/', middleware(Request), (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    try {
-        res.json(req.body);
-    } catch (e) {
-        next(e);
-    }
-});
+app.post('/', middleware(requests.TestingForm), (req: express.Request, res: express.Response) => {
+    res.json(req.body);
+})
+
+app.post('/auth', middleware(requests.TestingAuth), (req: express.Request, res: express.Response) => {
+    res.json(req.body);
+})
 
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (err instanceof ValidationException) {
-        res.status(err.code).json(err.body);
+        res.status(err.code).json(err.body)
     } else {
-        console.log(err);
-        res.status(500).json({message: "Something went wrong"});
+        res.status(500).json({message: "Something went wrong"})
     }
-});
+})
 
 app.listen(3000, () => {
-    console.log(`Server started on port 3000`);
-});
+    console.log(`Server started on port 3000`)
+})
 
-export default app;
+export default app
