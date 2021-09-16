@@ -1,7 +1,7 @@
 {
   "name": "@izzius94/express-request-validator",
   "description": "",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Maurizio Urso <izzius94@outlook.com>",
   "main": "dist/index.js",
   "bin": "dist/cli/index.js",
