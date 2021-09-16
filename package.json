@@ -2,7 +2,7 @@
   "name": "@izzius94/express-request-validator",
   "description": "",
   "version": "0.2.1",
-  "author": "Maurizio Urso <developer.urso@gmail.com>",
+  "author": "Maurizio Urso <izzius94@outlook.com>",
   "main": "dist/index.js",
   "bin": "dist/cli/index.js",
   "license": "MIT",
@@ -12,7 +12,6 @@
     "url": "git+https://gitlab.com/izzius94/express-request-validator.git"
   },
   "dependencies": {
-    "nyc": "^15.1.0",
     "validatorjs": "^3.22.1",
     "yargs": "^17.1.1"
   },
@@ -29,6 +28,7 @@
     "eslint": "^7.32.0",
     "express": "^4.17.1",
     "mocha": "^9.1.1",
+    "nyc": "^15.1.0",
     "standard": "^16.0.3",
     "ts-node": "^10.2.1",
     "ts-standard": "^10.0.0",
@@ -40,9 +40,9 @@
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --exit -r ts-node/register 'test/**/*.ts'",
     "coverage": "nyc --reporter=cobertura --reporter=text-summary npm run test",
-    "coverage-html": "nyc --reporter=html --reporter=text-summary npm run test",
+    "coverage-html": "nyc --reporter=html --report-dir=docs/site/coverage npm run test",
     "check-standard": "ts-standard",
-    "docs": "typedoc --plugin none --out docs/html",
+    "docs": "typedoc --gitRevision main --includeVersion --plugin none --out docs/site/code",
     "docs-gitlab": "typedoc --theme ./node_modules/typedoc-gitlab-wiki-theme/dist --out docs/giltab",
     "build": "tsc"
   },

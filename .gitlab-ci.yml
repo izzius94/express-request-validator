@@ -21,17 +21,23 @@ install:
 
 unit-test-job:
   stage: test
+  except:
+      - /^wip-.*$/
   script:
     - echo "Running unit tests"
     - npm test
 
 standard-test-job:
   stage: test
+  except:
+      - /^wip-.*$/
   script:
     - echo "Checking standard"
     - npm run check-standard
 
 test-coverage:
+  except:
+      - /^wip-.*$/
   script:
     - npm install
     - npm run coverage
